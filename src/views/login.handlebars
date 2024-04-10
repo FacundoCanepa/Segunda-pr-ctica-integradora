@@ -1,0 +1,16 @@
+<div class="Div-Form-Register">
+  <form method="POST" action="/api/user/login">
+    <h1>Login User</h1>
+    <label for="email"></label>
+    <input type="email" name="email" placeholder="Email:" required />
+    <label for="password"></label>
+    <input type="password" name="password" placeholder="password:" required />
+    <button type="submit">Login</button>
+    <p>{{loginFaildPassword}}</p>
+    <p>{{loginFailEmail}}</p>
+  </form>
+   <div class="github-button">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/GitHub_Invertocat_Logo.svg/800px-GitHub_Invertocat_Logo.svg.png" alt="GitHub Logo">
+      <a href="/api/user/github"><button type="button">Entrar con GitHub</button></a>
+    </div>
+</div>

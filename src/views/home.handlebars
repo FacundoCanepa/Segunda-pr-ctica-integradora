@@ -1,0 +1,22 @@
+
+<div class="listHome">
+    <ul >
+        {{#each productManager.docs}}
+        <li class="liHome">
+            <h3>{{this.title}}</h3>
+            <p>ID: {{this._id}}</p>
+            <p>Descripción: {{this.description}}</p>
+            <p>Precio: ${{this.price}}</p>
+            <p>Stock: {{this.stock}}</p>
+            <img src="{{this.thumbnails}}" alt="{{this.title}}">
+        </li>
+        {{/each}}
+    </ul>
+</div>
+<div>
+  <a href="/?page={{productManager.prevPage}}">Anterior</a>
+  <a href="/?page={{productManager.nextPage}}">Siguiente</a>
+</div>
+
+
+
