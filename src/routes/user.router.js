@@ -30,7 +30,7 @@ router.get('/current', (req, res) => {
     }
     const token = authorizationHeader.split(' ')[1];
     try {
-        const decodedToken = jwt.verify(token, 'Secreto12');
+        const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
         const tokenValue = decodedToken ? decodedToken : null;
         res.render('current', { token: tokenValue });
     } catch (error) {

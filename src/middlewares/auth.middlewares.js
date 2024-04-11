@@ -7,7 +7,7 @@ const generateToken = (user) => {
         cartId: user.cart 
     };
 
-    return jwt.sign(payload, 'Secreto12', { expiresIn: '1h' }); 
+    return jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' }); 
 };
 
 export { generateToken };
