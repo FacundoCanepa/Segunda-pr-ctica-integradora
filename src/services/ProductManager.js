@@ -1,4 +1,4 @@
-import productModel from '../model/products.model.js';
+import ProductDAO from '../dao/products.dao.js';
 
 export class ProductManager {
     static _instance;
@@ -14,8 +14,7 @@ export class ProductManager {
 
     async getProducts(limit) {
         try {
-            const productos = await productModel.find().limit(limit ? parseInt(limit) : undefined);
-            return productos;
+            return await ProductDAO.getAllProducts(limit);
         } catch (error) {
             throw error;
         }
@@ -23,11 +22,7 @@ export class ProductManager {
 
     async getProductById(id) {
         try {
-            const producto = await productModel.findOne({ _id: id });
-            if (!producto) {
-                throw new Error(`El producto con id ${id} no fue encontrado.`);
-            }
-            return producto;
+            return await ProductDAO.getProductById(id);
         } catch (error) {
             throw error;
         }
@@ -35,47 +30,25 @@ export class ProductManager {
 
     async addProduct(newProduct) {
         try {
-            newProduct.code = await generateUniqueCode();
-
-            newProduct.status = true;
-            
-            const producto = await productModel.create(newProduct);
-            return producto;
+            return await ProductDAO.addProduct(newProduct);
         } catch (error) {
             throw error;
         }
     }
-    
+
     async updateProduct(id, updatedFields) {
         try {
-            const updatedProduct = await productModel.findOneAndUpdate(
-                { _id: id }, 
-                { $set: updatedFields }, 
-                { new: true } 
-            );
-            return updatedProduct;
+            return await ProductDAO.updateProduct(id, updatedFields);
         } catch (error) {
             throw error;
         }
     }
-    
+
     async deleteProduct(id) {
         try {
-            const productoEliminado = await productModel.findOneAndDelete({ _id: id });
-            if (!productoEliminado) {
-                throw new Error(`No se encontró el producto con id ${id}.`);
-            }
+            return await ProductDAO.deleteProduct(id);
         } catch (error) {
             throw error;
         }
     }
 }
-  
-        function generateUniqueCode() {
-        let code = '';
-        while (code.length < 9) {
-            code += Math.floor(Math.random() * 10);
-        }
-        return code;
-    }
-    

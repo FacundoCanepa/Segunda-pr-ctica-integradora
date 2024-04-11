@@ -1,4 +1,4 @@
-import { generateToken } from '../config/auth.config.js';
+import { generateToken } from '../middlewares/auth.middlewares.js';
 
 const login = async (req, res) => {
     try {
